@@ -25,10 +25,12 @@ android {
 
 dependencies {
     implementation(Libs.kotlinJdk)
-    implementation("androidx.appcompat:appcompat:1.0.0-beta01")
-    implementation("androidx.core:core-ktx:1.1.0-alpha05")
-    implementation("androidx.constraintlayout:constraintlayout:1.1.3")
-    testImplementation("junit:junit:4.12")
-    androidTestImplementation("androidx.test:runner:1.1.0-alpha4")
-    androidTestImplementation("androidx.test.espresso:espresso-core:3.1.0-alpha4")
+    implementation(Libs.appCompat)
+    implementation(Libs.core)
+    implementation(Libs.constraintLayout)
+
+    testImplementation(TestLibs.junit)
+
+    androidTestImplementation(AndroidTestLibs.testRunner)
+    androidTestImplementation(AndroidTestLibs.espressoCore)
 }
