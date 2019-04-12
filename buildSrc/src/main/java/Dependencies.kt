@@ -1,9 +1,6 @@
 object Versions {
     const val androidGradle = "3.3.2"
-    const val kotlin = "1.3.21"
-}
-
-object AndroidX {
+    const val kotlin = "1.3.30"
 }
 
 object Libs {
