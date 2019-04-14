@@ -2,6 +2,7 @@ plugins {
     id("com.android.application")
     kotlin("android")
     kotlin("android.extensions")
+    id("androidx.navigation.safeargs.kotlin")
 }
 
 android {
@@ -28,6 +29,8 @@ dependencies {
     implementation(Libs.appCompat)
     implementation(Libs.core)
     implementation(Libs.constraintLayout)
+    implementation(Libs.navigationFragment)
+    implementation(Libs.navigationUi)
 
     testImplementation(TestLibs.junit)
 

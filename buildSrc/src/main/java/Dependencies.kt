@@ -1,6 +1,7 @@
 object Versions {
     const val androidGradle = "3.3.2"
     const val kotlin = "1.3.30"
+    const val navigation = "2.1.0-alpha02"
 }
 
 object Libs {
@@ -10,6 +11,9 @@ object Libs {
     const val constraintLayout = "androidx.constraintlayout:constraintlayout:1.1.3"
     const val kotlinJdk = "org.jetbrains.kotlin:kotlin-stdlib-jdk7:${Versions.kotlin}"
     const val kotlinGradlePlugin = "org.jetbrains.kotlin:kotlin-gradle-plugin:${Versions.kotlin}"
+    const val navigationFragment = "androidx.navigation:navigation-fragment:${Versions.navigation}"
+    const val navigationUi = "androidx.navigation:navigation-ui:${Versions.navigation}"
+    const val safeArgs = "androidx.navigation:navigation-safe-args-gradle-plugin:${Versions.navigation}"
 }
 
 object TestLibs {

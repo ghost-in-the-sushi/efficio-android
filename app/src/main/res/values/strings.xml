@@ -1,3 +1,13 @@
 <resources>
     <string name="app_name">Efficio</string>
+
+    <!-- TODO: Remove or change this placeholder text -->
+    <string name="hello_blank_fragment">Hello blank fragment</string>
+    <string name="create_new_store">Create new store</string>
+    <string name="rename_current_store">Rename current store</string>
+    <string name="delete_current_store">Delete current store</string>
+    <string name="store">Store</string>
+    <string name="aisles">Aisles</string>
+    <string name="edit_aisles">Edit aisles</string>
+    <string name="settings">Settings</string>
 </resources>
