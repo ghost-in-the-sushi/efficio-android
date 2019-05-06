@@ -26,11 +26,15 @@ android {
 
 dependencies {
     implementation(Libs.kotlinJdk)
+    implementation(Libs.kotlinCoroutines)
     implementation(Libs.appCompat)
     implementation(Libs.core)
     implementation(Libs.constraintLayout)
     implementation(Libs.navigationFragment)
     implementation(Libs.navigationUi)
+    implementation(Libs.retrofit)
+    implementation(Libs.retrofitCoroutinesAdapter)
+    implementation(Libs.retrofitMoshiConverter)
 
     testImplementation(TestLibs.junit)
 

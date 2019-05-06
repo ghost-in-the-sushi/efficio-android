@@ -11,9 +11,14 @@ object Libs {
     const val constraintLayout = "androidx.constraintlayout:constraintlayout:1.1.3"
     const val kotlinJdk = "org.jetbrains.kotlin:kotlin-stdlib-jdk7:${Versions.kotlin}"
     const val kotlinGradlePlugin = "org.jetbrains.kotlin:kotlin-gradle-plugin:${Versions.kotlin}"
+    const val kotlinCoroutines = "org.jetbrains.kotlinx:kotlinx-coroutines-core:1.2.1"
     const val navigationFragment = "androidx.navigation:navigation-fragment:${Versions.navigation}"
     const val navigationUi = "androidx.navigation:navigation-ui:${Versions.navigation}"
+    const val retrofit = "com.squareup.retrofit2:retrofit:2.5.0"
+    const val retrofitCoroutinesAdapter = "com.jakewharton.retrofit:retrofit2-kotlin-coroutines-adapter:0.9.2"
+    const val retrofitMoshiConverter = "com.squareup.retrofit2:converter-moshi:2.5.0"
     const val safeArgs = "androidx.navigation:navigation-safe-args-gradle-plugin:${Versions.navigation}"
+
 }
 
 object TestLibs {
