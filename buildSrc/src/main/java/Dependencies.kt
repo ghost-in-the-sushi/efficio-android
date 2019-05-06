@@ -1,11 +1,11 @@
 object Versions {
-    const val androidGradle = "3.3.2"
-    const val kotlin = "1.3.30"
+    const val androidGradle = "3.4.0"
+    const val kotlin = "1.3.31"
     const val navigation = "2.1.0-alpha02"
 }
 
 object Libs {
-    const val appCompat = "androidx.appcompat:appcompat:1.0.0-beta01"
+    const val appCompat = "androidx.appcompat:appcompat:1.0.2"
     const val androidGradle = "com.android.tools.build:gradle:${Versions.androidGradle}"
     const val core = "androidx.core:core-ktx:1.1.0-alpha05"
     const val constraintLayout = "androidx.constraintlayout:constraintlayout:1.1.3"
