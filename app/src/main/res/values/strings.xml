@@ -3,14 +3,16 @@
     <string name="aisles">Aisles</string>
     <string name="app_name">Efficio</string>
     <string name="create_new_store">Create new store</string>
+    <string name="create_user">Create user</string>
     <string name="delete_current_store">Delete current store</string>
     <string name="edit_aisles">Edit aisles</string>
-    <string name="login">Login</string>
+    <string name="email">Email</string>
     <string name="password">Password</string>
     <string name="rename_current_store">Rename current store</string>
     <string name="settings">Settings</string>
     <string name="sign_in">Sign in</string>
     <string name="sign_up">Sign up</string>
     <string name="store">Store</string>
+    <string name="username">Username</string>
     <string name="hello_blank_fragment" translatable="false">Hello blank Fragment</string>
 </resources>

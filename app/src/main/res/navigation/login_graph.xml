@@ -2,12 +2,21 @@
 <navigation xmlns:android="http://schemas.android.com/apk/res/android"
             xmlns:app="http://schemas.android.com/apk/res-auto"
             xmlns:tools="http://schemas.android.com/tools"
-            android:id="@+id/login"
+            android:id="@+id/username"
             app:startDestination="@id/loginFragment">
 
     <fragment
             android:id="@+id/loginFragment"
             android:name="org.ghostinthesuhi.android.efficio.login.LoginFragment"
             android:label="fragment_login"
-            tools:layout="@layout/fragment_login"/>
+            tools:layout="@layout/fragment_login">
+        <action
+                android:id="@+id/action_loginFragment_to_createUserFragment"
+                app:destination="@id/createUserFragment"/>
+    </fragment>
+    <fragment
+            android:id="@+id/createUserFragment"
+            android:name="org.ghostinthesuhi.android.efficio.login.CreateUserFragment"
+            android:label="CreateUserFragment"
+            tools:layout="@layout/fragment_create_user"/>
 </navigation>
