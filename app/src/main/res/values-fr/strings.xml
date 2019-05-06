@@ -1,4 +1,15 @@
-<?xml version="1.0" encoding="utf-8"?>
+<?xml version="1.0" encoding="utf-8" standalone="no"?>
 <resources>
+    <string name="aisles">Rayons</string>
     <string name="app_name">Efficio</string>
+    <string name="create_new_store">Créer un nouveau magasin</string>
+    <string name="delete_current_store">Supprimer le magasin actuel</string>
+    <string name="edit_aisles">Éditer les rayons</string>
+    <string name="login">Identifiant</string>
+    <string name="password">Mot de passe</string>
+    <string name="rename_current_store">Renommer le magasin actuel</string>
+    <string name="settings">Paramètres</string>
+    <string name="sign_in">Se connecter</string>
+    <string name="sign_up">Créer un compte</string>
+    <string name="store">Magasin</string>
 </resources>
