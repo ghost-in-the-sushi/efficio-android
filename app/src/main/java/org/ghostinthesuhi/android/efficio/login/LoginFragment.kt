@@ -1,6 +1,5 @@
 package org.ghostinthesuhi.android.efficio.login
 
-
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
@@ -18,11 +17,11 @@ import org.ghostinthesuhi.android.efficio.network.apis.LoginApi
 import org.ghostinthesuhi.android.efficio.network.models.Auth
 import org.ghostinthesuhi.android.efficio.network.models.Token
 
-
 class LoginFragment : Fragment() {
 
     override fun onCreateView(
-        inflater: LayoutInflater, container: ViewGroup?,
+        inflater: LayoutInflater,
+        container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
         // Inflate the layout for this fragment

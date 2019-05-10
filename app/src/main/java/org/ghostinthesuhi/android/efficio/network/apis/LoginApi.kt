@@ -13,5 +13,5 @@ interface LoginApi {
     fun login(@Body auth: Auth): Deferred<Token>
 
     @POST("user")
-    fun createUser(@Body user: User):Deferred<Token>
+    fun createUser(@Body user: User): Deferred<Token>
 }

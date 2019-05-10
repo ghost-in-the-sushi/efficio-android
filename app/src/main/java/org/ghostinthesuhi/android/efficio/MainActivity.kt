@@ -12,10 +12,8 @@ import kotlinx.android.synthetic.main.activity_main.*
 
 class MainActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelectedListener {
 
-
     private val drawerToggle: ActionBarDrawerToggle by lazy {
         object : ActionBarDrawerToggle(this, drawerLayout, 0, 0) {
-
         }
     }
     private lateinit var navController: NavController

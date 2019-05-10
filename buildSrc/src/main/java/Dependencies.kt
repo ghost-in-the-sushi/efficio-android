@@ -2,6 +2,7 @@ object Versions {
     const val androidGradle = "3.4.0"
     const val kotlin = "1.3.31"
     const val navigation = "2.1.0-alpha02"
+    const val ktlintGradle = "8.0.0"
 }
 
 object Libs {
@@ -28,4 +29,8 @@ object TestLibs {
 object AndroidTestLibs {
     const val testRunner = "androidx.test:runner:1.1.0-alpha4"
     const val espressoCore = "androidx.test.espresso:espresso-core:3.1.0-alpha4"
+}
+
+object Plugins {
+    const val ktlintGradle = "org.jlleitschuh.gradle.ktlint"
 }
