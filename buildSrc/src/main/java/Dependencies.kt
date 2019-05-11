@@ -1,8 +1,10 @@
 object Versions {
     const val androidGradle = "3.4.0"
     const val kotlin = "1.3.31"
-    const val navigation = "2.1.0-alpha03"
     const val ktlintGradle = "8.0.0"
+    const val lifecycle = "2.1.0-beta01"
+    const val navigation = "2.1.0-alpha03"
+    const val room = "2.1.0-beta01"
 }
 
 object Libs {
@@ -13,14 +15,18 @@ object Libs {
     const val kotlinJdk = "org.jetbrains.kotlin:kotlin-stdlib-jdk7:${Versions.kotlin}"
     const val kotlinGradlePlugin = "org.jetbrains.kotlin:kotlin-gradle-plugin:${Versions.kotlin}"
     const val kotlinCoroutines = "org.jetbrains.kotlinx:kotlinx-coroutines-core:1.2.1"
-    const val koin = "org.koin:koin-android:2.0.0-GA"
+    const val koin = "org.koin:koin-android-viewmodel:2.0.0-GA"
+    const val lifecycleExtensions = "androidx.lifecycle:lifecycle-extensions:${Versions.lifecycle}"
+    const val lifecycleViewModel = "androidx.lifecycle:lifecycle-viewmodel-ktx:${Versions.lifecycle}"
     const val navigationFragment = "androidx.navigation:navigation-fragment:${Versions.navigation}"
     const val navigationUi = "androidx.navigation:navigation-ui:${Versions.navigation}"
     const val retrofit = "com.squareup.retrofit2:retrofit:2.5.0"
     const val retrofitCoroutinesAdapter = "com.jakewharton.retrofit:retrofit2-kotlin-coroutines-adapter:0.9.2"
     const val retrofitMoshiConverter = "com.squareup.retrofit2:converter-moshi:2.5.0"
+    const val room = "androidx.room:room-runtime:${Versions.room}"
+    const val roomCompiler = "androidx.room:room-compiler:${Versions.room}"
+    const val roomKtx = "androidx.room:room-ktx:${Versions.room}"
     const val safeArgs = "androidx.navigation:navigation-safe-args-gradle-plugin:${Versions.navigation}"
-
 }
 
 object TestLibs {

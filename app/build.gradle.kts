@@ -2,6 +2,7 @@ plugins {
     id("com.android.application")
     kotlin("android")
     kotlin("android.extensions")
+    kotlin("kapt")
     id(Plugins.safeArgs)
 }
 
@@ -31,11 +32,17 @@ dependencies {
     implementation(Libs.core)
     implementation(Libs.constraintLayout)
     implementation(Libs.koin)
+    implementation(Libs.lifecycleExtensions)
+    implementation(Libs.lifecycleViewModel)
     implementation(Libs.navigationFragment)
     implementation(Libs.navigationUi)
     implementation(Libs.retrofit)
     implementation(Libs.retrofitCoroutinesAdapter)
     implementation(Libs.retrofitMoshiConverter)
+    implementation(Libs.room)
+    implementation(Libs.roomKtx)
+
+    kapt(Libs.roomCompiler)
 
     testImplementation(TestLibs.junit)
 

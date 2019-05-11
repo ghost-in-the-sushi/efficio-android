@@ -4,23 +4,18 @@ import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import androidx.fragment.app.Fragment
+import android.widget.Toast
 import androidx.navigation.fragment.NavHostFragment
 import kotlinx.android.synthetic.main.fragment_login.*
-import kotlinx.coroutines.CoroutineScope
-import kotlinx.coroutines.Dispatchers
-import kotlinx.coroutines.launch
+import org.ghostinthesuhi.android.efficio.CoroutineFragment
 import org.ghostinthesuhi.android.efficio.R
-import org.ghostinthesuhi.android.efficio.network.Network
+import org.ghostinthesuhi.android.efficio.login.models.LoginViewModel
 import org.ghostinthesuhi.android.efficio.network.PASSWORD
-import org.ghostinthesuhi.android.efficio.network.apis.LoginApi
-import org.ghostinthesuhi.android.efficio.network.models.Auth
-import org.ghostinthesuhi.android.efficio.network.models.Token
-import org.koin.android.ext.android.inject
-import retrofit2.Response
+import org.ghostinthesuhi.android.efficio.tools.eventObserver
+import org.koin.android.viewmodel.ext.android.viewModel
 
-class LoginFragment : Fragment() {
-    private val network:Network by inject()
+class LoginFragment : CoroutineFragment() {
+    private val viewModel: LoginViewModel by viewModel()
 
     override fun onCreateView(
         inflater: LayoutInflater,
@@ -32,11 +27,21 @@ class LoginFragment : Fragment() {
     }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
-        signIn.setOnClickListener {
-            CoroutineScope(Dispatchers.IO).launch {
-                login()
-            }
+        run {
+            // Set fake data. TODO: remove
+            username.setText("test")
+            password.setText(PASSWORD)
         }
+
+        signIn.setOnClickListener {
+            viewModel.login(username.text.toString(), password.text.toString())
+        }
+
+        viewModel.events.observe(this, eventObserver {
+            when (it) {
+                is LoginViewModel.Login.Toast -> toast(it.message)
+            }
+        })
 
         signUp.setOnClickListener {
             NavHostFragment.findNavController(this)
@@ -44,7 +49,7 @@ class LoginFragment : Fragment() {
         }
     }
 
-    suspend fun login(): Response<Token> {
-        return network[LoginApi::class].login(Auth("test", PASSWORD)).await()
+    private fun toast(text: String) {
+        Toast.makeText(context, text, Toast.LENGTH_SHORT).show()
     }
 }
