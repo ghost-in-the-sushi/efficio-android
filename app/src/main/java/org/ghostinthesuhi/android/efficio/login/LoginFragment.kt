@@ -9,6 +9,7 @@ import androidx.navigation.fragment.NavHostFragment
 import kotlinx.android.synthetic.main.fragment_login.*
 import org.ghostinthesuhi.android.efficio.CoroutineFragment
 import org.ghostinthesuhi.android.efficio.R
+import org.ghostinthesuhi.android.efficio.SplashActivity
 import org.ghostinthesuhi.android.efficio.login.models.LoginViewModel
 import org.ghostinthesuhi.android.efficio.network.PASSWORD
 import org.ghostinthesuhi.android.efficio.tools.eventObserver
@@ -39,7 +40,13 @@ class LoginFragment : CoroutineFragment() {
 
         viewModel.events.observe(this, eventObserver {
             when (it) {
-                is LoginViewModel.Login.Toast -> toast(it.message)
+                is LoginViewModel.Actions.ShowToast -> toast(it.message)
+                is LoginViewModel.Actions.LoginSuccess -> {
+                    activity?.let { activity ->
+                        startActivity(SplashActivity.intent(activity))
+                        activity.finish()
+                    }
+                }
             }
         })
 

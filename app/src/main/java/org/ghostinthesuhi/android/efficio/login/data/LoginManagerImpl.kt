@@ -31,7 +31,6 @@ class LoginManagerImpl(
         get() = authToken != null
 
     override suspend fun loginAsync(username: String, password: String): Result<Token> {
-        delay(5000)
         val result = safeAwait(loginApi.loginAsync(Auth(username, password)))
         if (result is Result.Success) {
             tokenSharedPreferences.edit().putString(KEY_AUTH_TOKEN, result.data.session_token).apply()
@@ -45,5 +44,12 @@ class LoginManagerImpl(
             tokenSharedPreferences.edit().putString(KEY_AUTH_TOKEN, result.data.session_token).apply()
         }
         return result
+    }
+
+    override suspend fun logOut() {
+        authToken?.let { authToken ->
+            safeAwait(loginApi.logout(authToken))
+            tokenSharedPreferences.edit().remove(KEY_AUTH_TOKEN).apply()
+        }
     }
 }

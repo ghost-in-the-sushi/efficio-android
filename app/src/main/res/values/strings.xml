@@ -15,4 +15,5 @@
     <string name="store">Store</string>
     <string name="username">Username</string>
     <string name="hello_blank_fragment" translatable="false">Hello blank Fragment</string>
+    <string name="log_out">Log out</string>
 </resources>

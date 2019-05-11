@@ -11,23 +11,21 @@ import org.ghostinthesuhi.android.efficio.tools.Event
 class LoginViewModel(
     private val loginManager: LoginManager
 ) : ViewModel() {
-    val events = MutableLiveData<Event<Login>>()
+    val events = MutableLiveData<Event<Actions>>()
 
     fun login(username: String, password: String) {
         viewModelScope.launch {
-            val message =
-                when (val result = loginManager.loginAsync(username, password)) {
-                    is Result.Success -> "Success"
-                    is Result.Error -> {
-                        "Error: ${result.throwable.localizedMessage}"
-                    }
+            when (val result = loginManager.loginAsync(username, password)) {
+                is Result.Success -> events.value = Event(Actions.LoginSuccess)
+                is Result.Error -> {
+                    events.value = Event(Actions.ShowToast("Error: ${result.throwable.localizedMessage}"))
                 }
-
-            events.value = Event(Login.Toast(message))
+            }
         }
     }
 
-    sealed class Login {
-        data class Toast(val message: String) : Login()
+    sealed class Actions {
+        data class ShowToast(val message: String) : Actions()
+        object LoginSuccess : Actions()
     }
 }
