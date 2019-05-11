@@ -42,8 +42,8 @@ class MainActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelecte
         drawerLayout.closeDrawers()
 
         when (menuItem.itemId) {
-            R.id.create_new_store -> navController.navigate(R.id.action_storeFragment_to_editItem)
-            R.id.settings -> navController.navigate(R.id.action_storeFragment_to_settingsFragment)
+            R.id.create_new_store -> navController.navigate(StoreFragmentDirections.actionStoreFragmentToEditItem())
+            R.id.settings -> navController.navigate(StoreFragmentDirections.actionStoreFragmentToSettingsFragment())
         }
 
         return true

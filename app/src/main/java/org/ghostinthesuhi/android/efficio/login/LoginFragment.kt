@@ -37,7 +37,7 @@ class LoginFragment : Fragment() {
 
         signUp.setOnClickListener {
             NavHostFragment.findNavController(this)
-                .navigate(R.id.action_loginFragment_to_createUserFragment)
+                .navigate(LoginFragmentDirections.actionLoginFragmentToCreateUserFragment())
         }
     }
 
