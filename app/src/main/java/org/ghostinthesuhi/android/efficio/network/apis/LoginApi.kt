@@ -4,14 +4,15 @@ import kotlinx.coroutines.Deferred
 import org.ghostinthesuhi.android.efficio.network.models.Auth
 import org.ghostinthesuhi.android.efficio.network.models.Token
 import org.ghostinthesuhi.android.efficio.network.models.User
+import retrofit2.Response
 import retrofit2.http.Body
 import retrofit2.http.POST
 
 interface LoginApi {
 
     @POST("login")
-    fun login(@Body auth: Auth): Deferred<Token>
+    fun login(@Body auth: Auth): Deferred<Response<Token>>
 
     @POST("user")
-    fun createUser(@Body user: User): Deferred<Token>
+    fun createUser(@Body user: User): Deferred<Response<Token>>
 }

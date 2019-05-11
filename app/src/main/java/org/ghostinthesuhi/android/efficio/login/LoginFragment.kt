@@ -16,8 +16,11 @@ import org.ghostinthesuhi.android.efficio.network.PASSWORD
 import org.ghostinthesuhi.android.efficio.network.apis.LoginApi
 import org.ghostinthesuhi.android.efficio.network.models.Auth
 import org.ghostinthesuhi.android.efficio.network.models.Token
+import org.koin.android.ext.android.inject
+import retrofit2.Response
 
 class LoginFragment : Fragment() {
+    private val network:Network by inject()
 
     override fun onCreateView(
         inflater: LayoutInflater,
@@ -41,7 +44,7 @@ class LoginFragment : Fragment() {
         }
     }
 
-    suspend fun login(): Token {
-        return Network[LoginApi::class].login(Auth("test", PASSWORD)).await()
+    suspend fun login(): Response<Token> {
+        return network[LoginApi::class].login(Auth("test", PASSWORD)).await()
     }
 }

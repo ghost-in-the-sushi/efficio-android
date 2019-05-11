@@ -1,5 +1,7 @@
-package org.ghostinthesuhi.android.efficio
+package org.ghostinthesuhi.android.efficio.main
 
+import android.content.Context
+import android.content.Intent
 import android.os.Bundle
 import android.view.MenuItem
 import androidx.appcompat.app.ActionBarDrawerToggle
@@ -9,8 +11,14 @@ import androidx.navigation.Navigation
 import androidx.navigation.ui.NavigationUI
 import com.google.android.material.navigation.NavigationView
 import kotlinx.android.synthetic.main.activity_main.*
+import org.ghostinthesuhi.android.efficio.R
 
 class MainActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelectedListener {
+    companion object {
+        fun intent(context: Context): Intent {
+            return Intent(context, MainActivity::class.java)
+        }
+    }
 
     private val drawerToggle: ActionBarDrawerToggle by lazy {
         object : ActionBarDrawerToggle(this, drawerLayout, 0, 0) {

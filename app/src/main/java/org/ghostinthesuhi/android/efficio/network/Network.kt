@@ -1,8 +1,8 @@
 package org.ghostinthesuhi.android.efficio.network
 
+import android.content.Context
 import com.jakewharton.retrofit2.adapter.kotlin.coroutines.CoroutineCallAdapterFactory
 import okhttp3.OkHttpClient
-import org.ghostinthesuhi.android.efficio.EfficioApplication
 import org.ghostinthesuhi.android.efficio.tools.getStringByResourceName
 import retrofit2.Retrofit
 import retrofit2.converter.moshi.MoshiConverterFactory
@@ -10,11 +10,11 @@ import kotlin.reflect.KClass
 
 private const val BASE_URL = "base_url"
 
-object Network {
+class Network(val context: Context) {
     private val apis = mutableMapOf<KClass<out Any>, Any>()
 
     private val baseUrl: String by lazy {
-        EfficioApplication.instance.getStringByResourceName(BASE_URL) ?: "http://127.0.0.1"
+        context.getStringByResourceName(BASE_URL) ?: "http://127.0.0.1"
     }
 
     private val retrofit: Retrofit by lazy {

@@ -15,8 +15,10 @@ import org.ghostinthesuhi.android.efficio.network.Network
 import org.ghostinthesuhi.android.efficio.network.PASSWORD
 import org.ghostinthesuhi.android.efficio.network.apis.LoginApi
 import org.ghostinthesuhi.android.efficio.network.models.User
+import org.koin.android.ext.android.inject
 
 class CreateUserFragment : Fragment() {
+    private val network:Network by inject()
 
     override fun onCreateView(
         inflater: LayoutInflater,
@@ -30,11 +32,13 @@ class CreateUserFragment : Fragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         createUser.setOnClickListener {
             CoroutineScope(Dispatchers.IO).launch {
-                val result = Network[LoginApi::class]
+                val result = network[LoginApi::class]
                     .createUser(User("test@test.com", "test", PASSWORD))
                     .await()
 
-                Log.d("Create user", "AuthToken = ${result.session_token}")
+                result.body()?.let { token ->
+                    Log.d("Create user", "AuthToken = ${token.session_token}")
+                }
             }
         }
     }
