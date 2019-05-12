@@ -5,6 +5,7 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.Toast
+import androidx.lifecycle.Observer
 import androidx.navigation.fragment.NavHostFragment
 import kotlinx.android.synthetic.main.fragment_login.*
 import org.ghostinthesuhi.android.efficio.CoroutineFragment
@@ -35,7 +36,11 @@ class LoginFragment : CoroutineFragment() {
         }
 
         signIn.setOnClickListener {
-            viewModel.login(username.text.toString(), password.text.toString())
+            if (viewModel.isSigningUp.value != true) {
+                viewModel.login(username.text.toString(), password.text.toString())
+            } else {
+                viewModel.cancelLogin()
+            }
         }
 
         viewModel.events.observe(this, eventObserver {
@@ -48,6 +53,9 @@ class LoginFragment : CoroutineFragment() {
                     }
                 }
             }
+        })
+        viewModel.isSigningUp.observe(this, Observer {
+            signIn.isLoading = it
         })
 
         signUp.setOnClickListener {
