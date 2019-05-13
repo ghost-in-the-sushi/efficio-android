@@ -7,6 +7,7 @@ import org.ghostinthesuhi.android.efficio.network.models.Auth
 import org.ghostinthesuhi.android.efficio.network.models.Token
 import org.ghostinthesuhi.android.efficio.network.models.User
 import retrofit2.http.Body
+import retrofit2.http.DELETE
 import retrofit2.http.Header
 import retrofit2.http.POST
 import java.net.HttpURLConnection.HTTP_BAD_REQUEST
@@ -28,5 +29,9 @@ interface LoginApi {
 
     @POST("logout")
     @ExpectedError(HTTP_UNAUTHORIZED, "User not logged in")
-    fun logout(@Header(X_AUTH_TOKEN) authToken: String): Deferred<Unit>
+    fun logoutAsync(@Header(X_AUTH_TOKEN) authToken: String): Deferred<Unit>
+
+    @DELETE("user")
+    @ExpectedError(HTTP_UNAUTHORIZED, "User not logged in")
+    fun deleteUserAsync(@Header(X_AUTH_TOKEN) authToken: String): Deferred<Unit>
 }

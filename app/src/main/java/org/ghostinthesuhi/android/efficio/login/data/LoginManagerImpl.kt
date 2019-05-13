@@ -1,7 +1,6 @@
 package org.ghostinthesuhi.android.efficio.login.data
 
 import android.content.Context
-import kotlinx.coroutines.delay
 import org.ghostinthesuhi.android.efficio.network.Result
 import org.ghostinthesuhi.android.efficio.network.apis.LoginApi
 import org.ghostinthesuhi.android.efficio.network.models.Auth
@@ -48,7 +47,7 @@ class LoginManagerImpl(
 
     override suspend fun logOut() {
         authToken?.let { authToken ->
-            safeAwait(loginApi.logout(authToken))
+            safeAwait(loginApi.logoutAsync(authToken))
             tokenSharedPreferences.edit().remove(KEY_AUTH_TOKEN).apply()
         }
     }
