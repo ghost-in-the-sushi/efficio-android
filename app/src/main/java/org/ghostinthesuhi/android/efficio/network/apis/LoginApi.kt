@@ -1,14 +1,13 @@
 package org.ghostinthesuhi.android.efficio.network.apis
 
 import kotlinx.coroutines.Deferred
+import org.ghostinthesuhi.android.efficio.network.Network.Companion.X_AUTH_TOKEN
 import org.ghostinthesuhi.android.efficio.network.models.Auth
 import org.ghostinthesuhi.android.efficio.network.models.Token
 import org.ghostinthesuhi.android.efficio.network.models.User
 import retrofit2.http.Body
 import retrofit2.http.Header
 import retrofit2.http.POST
-
-private const val X_AUTH_TOKEN = "x-auth-token"
 
 interface LoginApi {
 

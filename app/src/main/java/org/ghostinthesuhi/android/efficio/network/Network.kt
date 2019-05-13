@@ -11,6 +11,10 @@ import kotlin.reflect.KClass
 private const val BASE_URL = "base_url"
 
 class Network(val context: Context) {
+    companion object {
+        const val X_AUTH_TOKEN = "x-auth-token"
+    }
+
     private val apis = mutableMapOf<KClass<out Any>, Any>()
 
     private val baseUrl: String by lazy {
