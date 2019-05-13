@@ -29,11 +29,11 @@ class LoginFragment : CoroutineFragment() {
     }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
-        run {
+        {
             // Set fake data. TODO: remove
             username.setText("test")
             password.setText(PASSWORD)
-        }
+        }.invoke()
 
         signIn.setOnClickListener {
             if (viewModel.isSigningIn.value != true) {

@@ -20,6 +20,7 @@ class LoginManagerImpl(
      * Adding that here for fast prototyping.
      */
     private val tokenSharedPreferences = context.getSharedPreferences(LOGIN_DATA, Context.MODE_PRIVATE)
+    private val logoutListener = mutableListOf<() -> Unit>()
 
     override val authToken: String?
         get() {
@@ -30,7 +31,7 @@ class LoginManagerImpl(
         get() = authToken != null
 
     override suspend fun loginAsync(username: String, password: String): Result<Token> {
-        val result = safeAwait(loginApi.loginAsync(Auth(username, password)))
+        val result = loginApi.loginAsync(Auth(username, password)).safeAwait()
         if (result is Result.Success) {
             tokenSharedPreferences.edit().putString(KEY_AUTH_TOKEN, result.data.session_token).apply()
         }
@@ -38,7 +39,7 @@ class LoginManagerImpl(
     }
 
     override suspend fun createUserAsync(email: String, username: String, password: String): Result<Token> {
-        val result = safeAwait(loginApi.createUserAsync(User(email, username, password)))
+        val result = loginApi.createUserAsync(User(email, username, password)).safeAwait()
         if (result is Result.Success) {
             tokenSharedPreferences.edit().putString(KEY_AUTH_TOKEN, result.data.session_token).apply()
         }
@@ -47,15 +48,24 @@ class LoginManagerImpl(
 
     override suspend fun logOut() {
         authToken?.let { authToken ->
-            safeAwait(loginApi.logoutAsync(authToken))
-            tokenSharedPreferences.edit().remove(KEY_AUTH_TOKEN).apply()
+            loginApi.logoutAsync(authToken).safeAwait()
+            cleanUp()
         }
     }
 
     override suspend fun deleteUser() {
         authToken?.let { authToken ->
-            safeAwait(loginApi.deleteUserAsync(authToken))
-            tokenSharedPreferences.edit().remove(KEY_AUTH_TOKEN).apply()
+            loginApi.deleteUserAsync(authToken).safeAwait()
+            cleanUp()
         }
+    }
+
+    override fun registerLogoutListener(listener: () -> Unit) {
+        logoutListener.add(listener)
+    }
+
+    private fun cleanUp() {
+        tokenSharedPreferences.edit().remove(KEY_AUTH_TOKEN).apply()
+        logoutListener.forEach { it() }
     }
 }

@@ -16,12 +16,12 @@ import java.net.HttpURLConnection.HTTP_UNAUTHORIZED
 interface StoreApi {
     @POST("store")
     @ExpectedError(HTTP_UNAUTHORIZED, "User not logged in")
-    fun createStoreAsync(@Header(X_AUTH_TOKEN) authToken: String, @Body name: String): Deferred<CreateStoreResult>
+    fun createStoreAsync(@Header(X_AUTH_TOKEN) authToken: String, @Body name: StoreNameBody): Deferred<CreateStoreResponse>
 
     @PUT("store")
     @ExpectedError(HTTP_UNAUTHORIZED, "User not logged in")
     @ExpectedError(HTTP_FORBIDDEN, "Resource does not belong to user")
-    fun editStoreAsync(@Header(X_AUTH_TOKEN) authToken: String, @Body name: String): Deferred<Unit>
+    fun editStoreAsync(@Header(X_AUTH_TOKEN) authToken: String, @Body name: StoreNameBody): Deferred<Unit>
 
     @DELETE("store")
     @ExpectedError(HTTP_UNAUTHORIZED, "User not logged in")
@@ -30,9 +30,11 @@ interface StoreApi {
 
     @GET("store")
     @ExpectedError(HTTP_UNAUTHORIZED, "User not logged in")
-    fun listStoresAsync(@Header(X_AUTH_TOKEN) authToken: String): Deferred<ListStoreResult>
+    fun listStoresAsync(@Header(X_AUTH_TOKEN) authToken: String): Deferred<ListStoreResponse>
 }
 
-data class CreateStoreResult(val store_id: String)
+data class CreateStoreResponse(val store_id: String)
 
-data class ListStoreResult(val stores: List<StoreLight>)
+data class ListStoreResponse(val stores: List<StoreLight>)
+
+data class StoreNameBody(val name: String)

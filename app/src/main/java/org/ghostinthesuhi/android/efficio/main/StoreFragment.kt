@@ -4,25 +4,16 @@ import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import androidx.appcompat.app.AppCompatActivity
 import androidx.fragment.app.Fragment
+import androidx.lifecycle.Observer
 import kotlinx.android.synthetic.main.fragment_store.*
 import org.ghostinthesuhi.android.efficio.R
+import org.ghostinthesuhi.android.efficio.main.models.StoreFragmentViewModel
+import org.koin.android.viewmodel.ext.android.viewModel
 
-// TODO: Rename parameter arguments, choose names that match
-// the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
-private const val ARG_PARAM1 = "param1"
-private const val ARG_PARAM2 = "param2"
-
-/**
- * A simple [Fragment] subclass.
- * Activities that contain this fragment must implement the
- * [StoreFragment.OnFragmentInteractionListener] interface
- * to handle interaction events.
- * Use the [StoreFragment.newInstance] factory method to
- * create an instance of this fragment.
- *
- */
 class StoreFragment : Fragment() {
+    private val viewModel: StoreFragmentViewModel by viewModel()
 
     override fun onCreateView(
         inflater: LayoutInflater,
@@ -43,5 +34,15 @@ class StoreFragment : Fragment() {
         enableButton.setOnClickListener {
             loadingButton.isEnabled = !loadingButton.isEnabled
         }
+
+        viewModel.storeList.observe(this, Observer {
+        })
+        viewModel.store.observe(this, Observer {
+            setTitle(it.name)
+        })
+    }
+
+    private fun setTitle(title: String) {
+        (activity as? AppCompatActivity)?.supportActionBar?.title = title
     }
 }

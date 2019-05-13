@@ -34,6 +34,7 @@ dependencies {
     implementation(Libs.koin)
     implementation(Libs.lifecycleExtensions)
     implementation(Libs.lifecycleViewModel)
+    implementation(Libs.material)
     implementation(Libs.navigationFragment)
     implementation(Libs.navigationUi)
     implementation(Libs.retrofit)
