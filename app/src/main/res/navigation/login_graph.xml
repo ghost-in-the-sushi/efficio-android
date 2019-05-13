@@ -6,17 +6,17 @@
             app:startDestination="@id/loginFragment">
 
     <fragment
-            android:id="@+id/loginFragment"
-            android:name="org.ghostinthesuhi.android.efficio.login.LoginFragment"
-            android:label="fragment_login"
-            tools:layout="@layout/fragment_login">
+        android:id="@+id/loginFragment"
+        android:name="org.ghostinthesuhi.android.efficio.login.LoginFragment"
+        android:label="@string/sign_in"
+        tools:layout="@layout/fragment_login">
         <action
-                android:id="@+id/action_loginFragment_to_createUserFragment"
-                app:destination="@id/createUserFragment"/>
+            android:id="@+id/action_loginFragment_to_createUserFragment"
+            app:destination="@id/createUserFragment"/>
     </fragment>
     <fragment
-            android:id="@+id/createUserFragment"
-            android:name="org.ghostinthesuhi.android.efficio.login.CreateUserFragment"
-            android:label="CreateUserFragment"
-            tools:layout="@layout/fragment_create_user"/>
+        android:id="@+id/createUserFragment"
+        android:name="org.ghostinthesuhi.android.efficio.login.CreateUserFragment"
+        android:label="@string/sign_up"
+        tools:layout="@layout/fragment_create_user"/>
 </navigation>

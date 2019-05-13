@@ -13,4 +13,5 @@ interface LoginManager {
     suspend fun createUserAsync(email: String, username: String, password: String): Result<Token>
 
     suspend fun logOut()
+    suspend fun deleteUser()
 }

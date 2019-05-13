@@ -36,10 +36,8 @@ class LoginFragment : CoroutineFragment() {
         }
 
         signIn.setOnClickListener {
-            if (viewModel.isSigningUp.value != true) {
+            if (viewModel.isSigningIn.value != true) {
                 viewModel.login(username.text.toString(), password.text.toString())
-            } else {
-                viewModel.cancelLogin()
             }
         }
 
@@ -54,7 +52,7 @@ class LoginFragment : CoroutineFragment() {
                 }
             }
         })
-        viewModel.isSigningUp.observe(this, Observer {
+        viewModel.isSigningIn.observe(this, Observer {
             signIn.isLoading = it
         })
 

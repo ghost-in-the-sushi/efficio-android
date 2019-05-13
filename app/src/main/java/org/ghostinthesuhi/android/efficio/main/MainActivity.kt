@@ -61,6 +61,7 @@ class MainActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelecte
             R.id.create_new_store -> navController.navigate(StoreFragmentDirections.actionStoreFragmentToEditItem())
             R.id.settings -> navController.navigate(StoreFragmentDirections.actionStoreFragmentToSettingsFragment())
             R.id.log_out -> logOut()
+            R.id.delete_user -> deleteUser()
         }
 
         return true
@@ -69,6 +70,14 @@ class MainActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelecte
     private fun logOut() {
         CoroutineScope(Dispatchers.Main).launch {
             loginManager.logOut()
+            startActivity(SplashActivity.intent(this@MainActivity))
+            finish()
+        }
+    }
+
+    private fun deleteUser(){
+        CoroutineScope(Dispatchers.Main).launch {
+            loginManager.deleteUser()
             startActivity(SplashActivity.intent(this@MainActivity))
             finish()
         }

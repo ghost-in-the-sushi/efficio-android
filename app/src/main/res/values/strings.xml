@@ -7,6 +7,8 @@
     <string name="delete_current_store">Delete current store</string>
     <string name="edit_aisles">Edit aisles</string>
     <string name="email">Email</string>
+    <string name="log_out">Log out</string>
+    <string name="no_account_sign_up">No account yet? Sign up</string>
     <string name="password">Password</string>
     <string name="rename_current_store">Rename current store</string>
     <string name="settings">Settings</string>
@@ -15,5 +17,6 @@
     <string name="store">Store</string>
     <string name="username">Username</string>
     <string name="hello_blank_fragment" translatable="false">Hello blank Fragment</string>
-    <string name="log_out">Log out</string>
+    <string name="user">User</string>
+    <string name="delete_user">Delete user</string>
 </resources>

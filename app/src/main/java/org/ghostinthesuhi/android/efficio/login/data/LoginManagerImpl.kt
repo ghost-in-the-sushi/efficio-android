@@ -51,4 +51,11 @@ class LoginManagerImpl(
             tokenSharedPreferences.edit().remove(KEY_AUTH_TOKEN).apply()
         }
     }
+
+    override suspend fun deleteUser() {
+        authToken?.let { authToken ->
+            safeAwait(loginApi.deleteUserAsync(authToken))
+            tokenSharedPreferences.edit().remove(KEY_AUTH_TOKEN).apply()
+        }
+    }
 }

@@ -6,6 +6,7 @@ import android.view.View
 import android.view.ViewGroup
 import android.widget.Toast
 import androidx.fragment.app.Fragment
+import androidx.lifecycle.Observer
 import kotlinx.android.synthetic.main.fragment_create_user.*
 import org.ghostinthesuhi.android.efficio.R
 import org.ghostinthesuhi.android.efficio.SplashActivity
@@ -35,11 +36,14 @@ class CreateUserFragment : Fragment() {
         }
 
         createUser.setOnClickListener {
-            viewModel.createUser(
-                email = email.text.toString(),
-                username = username.text.toString(),
-                password = password.text.toString()
-            )
+            // Only create the user if it's not already happening
+            if (viewModel.isSigningUp.value != true) {
+                viewModel.createUser(
+                    email = email.text.toString(),
+                    username = username.text.toString(),
+                    password = password.text.toString()
+                )
+            }
         }
 
         viewModel.events.observe(this, eventObserver {
@@ -52,6 +56,9 @@ class CreateUserFragment : Fragment() {
                     }
                 }
             }
+        })
+        viewModel.isSigningUp.observe(this, Observer {
+            createUser.isLoading = it
         })
     }
 
