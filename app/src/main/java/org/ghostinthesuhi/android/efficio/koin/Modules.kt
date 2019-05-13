@@ -12,13 +12,14 @@ import org.ghostinthesuhi.android.efficio.network.Network
 import org.ghostinthesuhi.android.efficio.network.Network.Companion.X_AUTH_TOKEN
 import org.ghostinthesuhi.android.efficio.network.apis.LoginApi
 import org.ghostinthesuhi.android.efficio.network.apis.StoreApi
+import org.ghostinthesuhi.android.efficio.tools.SizeConstrainedMap
 import org.koin.android.ext.koin.androidContext
 import org.koin.android.viewmodel.dsl.viewModel
 import org.koin.core.parameter.parametersOf
 import org.koin.core.qualifier.named
 import org.koin.dsl.module
 
-private val storeRepositories = mutableMapOf<String, StoreRepository>()
+private val storeRepositories = SizeConstrainedMap<String, StoreRepository>(1)
 
 val networkModule = module {
     single { Network(androidContext()) }
@@ -45,5 +46,5 @@ val storeModule = module {
         }
     }
     viewModel { StoreFragmentViewModel(get(parameters = { parametersOf(get(named(X_AUTH_TOKEN))) })) }
-    viewModel { CreateStoreViewModel(get()) }
+    viewModel { CreateStoreViewModel(get(parameters = { parametersOf(get(named(X_AUTH_TOKEN))) })) }
 }
