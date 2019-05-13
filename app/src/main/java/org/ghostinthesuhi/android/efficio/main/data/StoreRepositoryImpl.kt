@@ -6,18 +6,13 @@ import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.Job
 import kotlinx.coroutines.launch
-import org.ghostinthesuhi.android.efficio.login.data.LoginManager
 import org.ghostinthesuhi.android.efficio.network.Result
 import org.ghostinthesuhi.android.efficio.network.apis.StoreApi
 import org.ghostinthesuhi.android.efficio.network.apis.StoreNameBody
 import org.ghostinthesuhi.android.efficio.network.models.StoreLight
 import org.ghostinthesuhi.android.efficio.network.safeAwait
 
-class StoreRepositoryImpl(private val loginManager: LoginManager, private val storeApi: StoreApi) : StoreRepository {
-    init {
-        loginManager.registerLogoutListener(::cleanUp)
-    }
-
+class StoreRepositoryImpl(private val authToken: String, private val storeApi: StoreApi) : StoreRepository {
     private val currentlySelectedStore = MutableLiveData<StoreLight>()
     private val stores: MutableLiveData<List<StoreLight>>by lazy {
         MutableLiveData<List<StoreLight>>().also {
@@ -41,8 +36,6 @@ class StoreRepositoryImpl(private val loginManager: LoginManager, private val st
         }
     }
 
-    private val authToken: String get() = requireNotNull(loginManager.authToken)
-
     override fun getCurrentStore(): LiveData<StoreLight> {
         return currentlySelectedStore
     }
@@ -60,10 +53,5 @@ class StoreRepositoryImpl(private val loginManager: LoginManager, private val st
             }
             is Result.Error -> result
         }
-    }
-
-    private fun cleanUp() {
-        // currentlySelectedStore.postValue(null)
-        // stores.postValue(null)
     }
 }

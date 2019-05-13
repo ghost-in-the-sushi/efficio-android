@@ -9,11 +9,16 @@ import org.ghostinthesuhi.android.efficio.main.data.StoreRepositoryImpl
 import org.ghostinthesuhi.android.efficio.main.models.CreateStoreViewModel
 import org.ghostinthesuhi.android.efficio.main.models.StoreFragmentViewModel
 import org.ghostinthesuhi.android.efficio.network.Network
+import org.ghostinthesuhi.android.efficio.network.Network.Companion.X_AUTH_TOKEN
 import org.ghostinthesuhi.android.efficio.network.apis.LoginApi
 import org.ghostinthesuhi.android.efficio.network.apis.StoreApi
 import org.koin.android.ext.koin.androidContext
 import org.koin.android.viewmodel.dsl.viewModel
+import org.koin.core.parameter.parametersOf
+import org.koin.core.qualifier.named
 import org.koin.dsl.module
+
+private val storeRepositories = mutableMapOf<String, StoreRepository>()
 
 val networkModule = module {
     single { Network(androidContext()) }
@@ -33,7 +38,12 @@ val loginModule = module {
 
 val storeModule = module {
     factory { get<Network>()[StoreApi::class] }
-    single<StoreRepository> { StoreRepositoryImpl(get(), get()) }
-    viewModel { StoreFragmentViewModel(get()) }
+    factory(named(X_AUTH_TOKEN)) { requireNotNull(get<LoginManager>().authToken) }
+    factory { (authToken: String) ->
+        storeRepositories.getOrPut(authToken) {
+            StoreRepositoryImpl(authToken, get())
+        }
+    }
+    viewModel { StoreFragmentViewModel(get(parameters = { parametersOf(get(named(X_AUTH_TOKEN))) })) }
     viewModel { CreateStoreViewModel(get()) }
 }
