@@ -7,7 +7,7 @@ sealed class Result<out T : Any> {
     data class Error(val throwable: Throwable) : Result<Nothing>()
 }
 
-suspend fun <T:Any> Deferred<T>.safeAwait():Result<T>{
+suspend fun <T : Any> Deferred<T>.safeAwait(): Result<T> {
     return try {
         Result.Success(await())
     } catch (throwable: Throwable) {

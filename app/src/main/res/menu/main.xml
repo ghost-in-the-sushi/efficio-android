@@ -6,35 +6,35 @@
         <item android:title="@string/store">
             <menu>
                 <item
-                    android:id="@+id/create_new_store"
-                    android:title="@string/create_new_store"/>
+                    android:id="@+id/create_store_fragment"
+                    android:title="@string/create_new_store" />
                 <item
-                    android:id="@+id/rename_current_store"
-                    android:title="@string/rename_current_store"/>
+                    android:id="@+id/edit_store_fragment"
+                    android:title="@string/rename_current_store" />
                 <item
                     android:id="@+id/delete_current_store"
-                    android:title="@string/delete_current_store"/>
+                    android:title="@string/delete_current_store" />
             </menu>
         </item>
         <item android:title="@string/aisles">
             <menu>
                 <item
-                    android:title="@string/edit_aisles"
-                    android:id="@+id/edit_aisles"/>
+                    android:id="@+id/edit_aisles"
+                    android:title="@string/edit_aisles" />
             </menu>
         </item>
         <item
-            android:id="@+id/settings"
-            android:title="@string/settings"/>
+            android:id="@+id/settings_fragment"
+            android:title="@string/settings" />
 
         <item android:title="@string/user">
             <menu>
                 <item
                     android:id="@+id/log_out"
-                    android:title="@string/log_out"/>
+                    android:title="@string/log_out" />
                 <item
                     android:id="@+id/delete_user"
-                    android:title="@string/delete_user"/>
+                    android:title="@string/delete_user" />
             </menu>
         </item>
     </group>

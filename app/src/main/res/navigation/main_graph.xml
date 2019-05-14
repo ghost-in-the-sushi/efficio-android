@@ -12,25 +12,25 @@
         tools:layout="@layout/fragment_store">
         <action
             android:id="@+id/action_storeFragment_to_editItem"
-            app:destination="@id/editItemFragment" />
+            app:destination="@id/edit_item_fragment" />
         <action
             android:id="@+id/action_storeFragment_to_settingsFragment"
-            app:destination="@id/settingsFragment" />
+            app:destination="@id/settings_fragment" />
         <action
             android:id="@+id/action_storeFragment_to_createStoreFragment"
-            app:destination="@id/create_store_fragment"
-            app:enterAnim="@anim/nav_default_enter_anim"
-            app:exitAnim="@anim/nav_default_exit_anim"
-            app:popEnterAnim="@anim/nav_default_pop_enter_anim"
-            app:popExitAnim="@anim/nav_default_pop_exit_anim" />
+            app:destination="@id/create_store_fragment" />
+
+        <action
+            android:id="@+id/action_storeFragment_to_editStoreFragment"
+            app:destination="@id/edit_store_fragment" />
     </fragment>
     <fragment
-        android:id="@+id/editItemFragment"
+        android:id="@+id/edit_item_fragment"
         android:name="org.ghostinthesuhi.android.efficio.main.EditItemFragment"
         android:label="fragment_edit_item"
         tools:layout="@layout/fragment_edit_item" />
     <fragment
-        android:id="@+id/settingsFragment"
+        android:id="@+id/settings_fragment"
         android:name="org.ghostinthesuhi.android.efficio.main.SettingsFragment"
         android:label="@string/settings"
         tools:layout="@layout/fragment_settings" />
@@ -38,4 +38,13 @@
         android:id="@+id/create_store_fragment"
         android:name="org.ghostinthesuhi.android.efficio.main.CreateStoreFragment"
         android:label="@string/create_new_store" />
+    <fragment
+        android:id="@+id/edit_store_fragment"
+        android:name="org.ghostinthesuhi.android.efficio.main.EditStoreFragment"
+        android:label="@string/rename_current_store">
+        <argument
+            android:name="storeId"
+            app:argType="string"
+            app:nullable="false" />
+    </fragment>
 </navigation>

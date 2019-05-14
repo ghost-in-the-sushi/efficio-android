@@ -50,9 +50,9 @@ class CreateUserFragment : Fragment() {
             when (it) {
                 is CreateUserViewModel.Actions.ShowToast -> toast(it.message)
                 is CreateUserViewModel.Actions.CreateUserSuccess -> {
-                    activity?.let {
-                        startActivity(SplashActivity.intent(it))
-                        it.finish()
+                    activity?.run {
+                        startActivity(SplashActivity.intent(this))
+                        finish()
                     }
                 }
             }

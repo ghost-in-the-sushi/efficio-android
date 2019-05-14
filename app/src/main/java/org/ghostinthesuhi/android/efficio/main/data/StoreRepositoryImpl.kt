@@ -6,6 +6,7 @@ import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.Job
 import kotlinx.coroutines.launch
+import kotlinx.coroutines.withContext
 import org.ghostinthesuhi.android.efficio.network.Result
 import org.ghostinthesuhi.android.efficio.network.apis.StoreApi
 import org.ghostinthesuhi.android.efficio.network.apis.StoreNameBody
@@ -40,6 +41,12 @@ class StoreRepositoryImpl(private val authToken: String, private val storeApi: S
         return currentlySelectedStore
     }
 
+    override suspend fun getStoreAsync(storeId: String): StoreLight? {
+        return withContext(CoroutineScope(Dispatchers.IO).coroutineContext) {
+            stores.value?.firstOrNull { it.store_id == storeId }
+        }
+    }
+
     override fun getStoreList(): LiveData<List<StoreLight>> = stores
 
     override suspend fun createStore(name: String): Result<Unit> {
@@ -48,6 +55,23 @@ class StoreRepositoryImpl(private val authToken: String, private val storeApi: S
                 val newStore = StoreLight(name, result.data.store_id)
                 currentlySelectedStore.value = newStore
                 stores.value = (stores.value?.toMutableList() ?: mutableListOf()).plus(newStore)
+
+                Result.Success(Unit)
+            }
+            is Result.Error -> result
+        }
+    }
+
+    override suspend fun updateStore(storeId: String, name: String): Result<Unit> {
+        return when (val result = storeApi.editStoreAsync(authToken, storeId, StoreNameBody(name)).safeAwait()) {
+            is Result.Success -> {
+                val updatedStore = StoreLight(name, storeId)
+                if (storeId == currentlySelectedStore.value?.store_id) {
+                    currentlySelectedStore.postValue(updatedStore)
+                }
+                stores.value?.toMutableList()?.map {
+                    if (storeId == it.store_id) updatedStore else it
+                }?.let { stores.value = it }
 
                 Result.Success(Unit)
             }

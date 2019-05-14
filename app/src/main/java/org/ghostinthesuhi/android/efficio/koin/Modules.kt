@@ -7,6 +7,8 @@ import org.ghostinthesuhi.android.efficio.login.models.LoginViewModel
 import org.ghostinthesuhi.android.efficio.main.data.StoreRepository
 import org.ghostinthesuhi.android.efficio.main.data.StoreRepositoryImpl
 import org.ghostinthesuhi.android.efficio.main.models.CreateStoreViewModel
+import org.ghostinthesuhi.android.efficio.main.models.EditStoreViewModel
+import org.ghostinthesuhi.android.efficio.main.models.MainViewModel
 import org.ghostinthesuhi.android.efficio.main.models.StoreFragmentViewModel
 import org.ghostinthesuhi.android.efficio.network.Network
 import org.ghostinthesuhi.android.efficio.network.Network.Companion.X_AUTH_TOKEN
@@ -45,6 +47,12 @@ val storeModule = module {
             StoreRepositoryImpl(authToken, get())
         }
     }
+    viewModel { MainViewModel(get(), get(parameters = { parametersOf(get(named(X_AUTH_TOKEN))) })) }
     viewModel { StoreFragmentViewModel(get(parameters = { parametersOf(get(named(X_AUTH_TOKEN))) })) }
     viewModel { CreateStoreViewModel(get(parameters = { parametersOf(get(named(X_AUTH_TOKEN))) })) }
+    viewModel { (storeId: String) ->
+        EditStoreViewModel(
+            storeId,
+            get(parameters = { parametersOf(get(named(X_AUTH_TOKEN))) }))
+    }
 }

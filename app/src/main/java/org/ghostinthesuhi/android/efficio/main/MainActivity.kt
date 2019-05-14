@@ -9,6 +9,7 @@ import androidx.appcompat.app.AppCompatActivity
 import androidx.navigation.NavController
 import androidx.navigation.Navigation
 import androidx.navigation.ui.NavigationUI
+import androidx.navigation.ui.onNavDestinationSelected
 import com.google.android.material.navigation.NavigationView
 import kotlinx.android.synthetic.main.activity_main.*
 import kotlinx.coroutines.CoroutineScope
@@ -17,10 +18,13 @@ import kotlinx.coroutines.launch
 import org.ghostinthesuhi.android.efficio.R
 import org.ghostinthesuhi.android.efficio.SplashActivity
 import org.ghostinthesuhi.android.efficio.login.data.LoginManager
+import org.ghostinthesuhi.android.efficio.main.models.MainViewModel
 import org.koin.android.ext.android.inject
+import org.koin.android.viewmodel.ext.android.viewModel
 
 class MainActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelectedListener {
     private val loginManager: LoginManager by inject()
+    private val viewModel: MainViewModel by viewModel()
 
     companion object {
         fun intent(context: Context): Intent {
@@ -56,22 +60,24 @@ class MainActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelecte
 
     override fun onNavigationItemSelected(menuItem: MenuItem): Boolean {
         drawerLayout.closeDrawers()
-
-        when (menuItem.itemId) {
-            R.id.create_new_store -> {
-                navController.navigate(StoreFragmentDirections.actionStoreFragmentToCreateStoreFragment())
+        return when (menuItem.itemId) {
+            R.id.log_out -> {
+                logOut()
+                true
             }
-            R.id.rename_current_store -> {
-                navController.navigate(StoreFragmentDirections.actionStoreFragmentToEditItem())
+            R.id.delete_user -> {
+                deleteUser()
+                true
             }
-            R.id.settings -> {
-                navController.navigate(StoreFragmentDirections.actionStoreFragmentToSettingsFragment())
+            R.id.edit_store_fragment -> {
+                viewModel.currentStore.value?.let { currentStore ->
+                    navController.navigate(
+                        StoreFragmentDirections.actionStoreFragmentToEditStoreFragment(currentStore.store_id))
+                    true
+                } ?: false
             }
-            R.id.log_out -> logOut()
-            R.id.delete_user -> deleteUser()
+            else -> menuItem.onNavDestinationSelected(navController)
         }
-
-        return true
     }
 
     private fun logOut() {
