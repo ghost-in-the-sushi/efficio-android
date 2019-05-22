@@ -3,14 +3,14 @@ object Versions {
     const val kotlin = "1.3.31"
     const val ktlintGradle = "8.0.0"
     const val lifecycle = "2.1.0-beta01"
-    const val navigation = "2.1.0-alpha03"
+    const val navigation = "2.1.0-alpha04"
     const val room = "2.1.0-beta01"
 }
 
 object Libs {
-    const val appCompat = "androidx.appcompat:appcompat:1.0.2"
+    const val appCompat = "androidx.appcompat:appcompat:1.1.0-alpha05"
     const val androidGradle = "com.android.tools.build:gradle:${Versions.androidGradle}"
-    const val core = "androidx.core:core-ktx:1.1.0-alpha05"
+    const val core = "androidx.core:core-ktx:1.2.0-alpha01"
     const val constraintLayout = "androidx.constraintlayout:constraintlayout:1.1.3"
     const val kotlinJdk = "org.jetbrains.kotlin:kotlin-stdlib-jdk7:${Versions.kotlin}"
     const val kotlinGradlePlugin = "org.jetbrains.kotlin:kotlin-gradle-plugin:${Versions.kotlin}"
@@ -18,7 +18,7 @@ object Libs {
     const val koin = "org.koin:koin-android-viewmodel:2.0.0-GA"
     const val lifecycleExtensions = "androidx.lifecycle:lifecycle-extensions:${Versions.lifecycle}"
     const val lifecycleViewModel = "androidx.lifecycle:lifecycle-viewmodel-ktx:${Versions.lifecycle}"
-    const val material = "com.google.android.material:material:1.0.0"
+    const val material = "com.google.android.material:material:1.1.0-alpha06"
     const val navigationFragment = "androidx.navigation:navigation-fragment-ktx:${Versions.navigation}"
     const val navigationUi = "androidx.navigation:navigation-ui-ktx:${Versions.navigation}"
     const val retrofit = "com.squareup.retrofit2:retrofit:2.5.0"

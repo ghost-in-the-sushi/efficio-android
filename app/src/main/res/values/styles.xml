@@ -7,8 +7,14 @@
         <item name="colorPrimaryDark">@color/colorPrimaryDark</item>
         <item name="colorAccent">@color/colorAccent</item>
         <item name="colorOnPrimary">#ffffff</item>
-
+        <item name="textInputStyle">@style/TextField</item>
     </style>
 
     <attr name="colorOnPrimary" format="color" />
+
+    <!-- Interesting read about material styles:
+         https://medium.com/over-engineering/setting-up-a-material-components-theme-for-android-fbf7774da739 -->
+    <style name="TextField" parent="Widget.MaterialComponents.TextInputLayout.FilledBox.Dense">
+        <item name="boxBackgroundColor">@android:color/transparent</item>
+    </style>
 </resources>
