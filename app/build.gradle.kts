@@ -1,3 +1,5 @@
+import org.jetbrains.kotlin.gradle.tasks.KotlinCompile
+
 plugins {
     id("com.android.application")
     kotlin("android")
@@ -25,6 +27,10 @@ android {
     }
 }
 
+tasks.withType<KotlinCompile> {
+    kotlinOptions.jvmTarget = "1.8"
+}
+
 dependencies {
     implementation(Libs.kotlinJdk)
     implementation(Libs.kotlinCoroutines)
@@ -42,6 +48,7 @@ dependencies {
     implementation(Libs.retrofitMoshiConverter)
     implementation(Libs.room)
     implementation(Libs.roomKtx)
+    implementation(Libs.swipeRefreshLayout)
 
     kapt(Libs.roomCompiler)
 

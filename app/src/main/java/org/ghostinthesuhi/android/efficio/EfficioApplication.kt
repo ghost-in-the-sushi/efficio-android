@@ -16,7 +16,7 @@ class EfficioApplication : Application() {
         startKoin {
             androidLogger()
             androidContext(this@EfficioApplication)
-            modules(networkModule, loginModule, storeModule)
+            modules(listOf(networkModule, loginModule, storeModule))
         }
     }
 }
